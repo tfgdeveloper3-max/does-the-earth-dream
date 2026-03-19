@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Nunito:wght@300;400;500;600;700&family=Dancing+Script:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --dream-deep:     #0f0c2e;
+  --dream-navy:     #1a1650;
+  --dream-indigo:   #2d2880;
+  --dream-cobalt:   #3d3aaa;
+  --dream-violet:   #6b5dd3;
+  --dream-lavender: #9b8fe8;
+  --dream-pink:     #c084b0;
+  --dream-rose:     #d4a0c8;
+  --dream-star:     #e8e4ff;
+  --dream-white:    #f5f3ff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--dream-deep);
+  color: var(--dream-star);
+  font-family: 'Nunito', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── Starfield canvas background ── */
+#starfield {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--dream-deep); }
+::-webkit-scrollbar-thumb { background: var(--dream-violet); border-radius: 3px; }
+
+/* ── Section base ── */
+.section-base {
+  position: relative;
+  z-index: 1;
+  padding: 6rem 1.5rem;
+}
+
+/* ── Glass card ── */
+.glass-card {
+  background: rgba(45, 40, 128, 0.2);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(155, 143, 232, 0.2);
+  border-radius: 1.5rem;
+}
+
+/* ── Dream button ── */
+.btn-dream {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: linear-gradient(135deg, var(--dream-violet), var(--dream-pink));
+  color: white;
+  border-radius: 9999px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 30px rgba(107,93,211,0.5);
+  border: none;
+  cursor: pointer;
+}
+.btn-dream:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 50px rgba(107,93,211,0.7);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  background: transparent;
+  color: var(--dream-lavender);
+  border-radius: 9999px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1.5px solid var(--dream-lavender);
+  cursor: pointer;
+}
+.btn-outline:hover {
+  background: rgba(155,143,232,0.15);
+  transform: translateY(-2px);
+}
+
+/* ── Floating orbs ── */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+/* ── Section heading ── */
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--dream-star);
+}
+.section-subtitle {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  color: var(--dream-lavender);
+}
+
+/* ── Nav ── */
+.nav-link {
+  color: var(--dream-lavender);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--dream-violet);
+  border-radius: 9999px;
+  transition: width 0.3s;
+}
+.nav-link:hover { color: var(--dream-white); }
+.nav-link:hover::after { width: 100%; }
+
+/* ── Input ── */
+.dream-input {
+  background: rgba(45,40,128,0.3);
+  border: 1px solid rgba(155,143,232,0.3);
+  border-radius: 0.75rem;
+  color: var(--dream-star);
+  font-family: 'Nunito', sans-serif;
+  padding: 0.75rem 1.25rem;
+  width: 100%;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  outline: none;
+}
+.dream-input::placeholder { color: rgba(155,143,232,0.5); }
+.dream-input:focus {
+  border-color: var(--dream-violet);
+  box-shadow: 0 0 20px rgba(107,93,211,0.2);
+}
+
+/* ── Reveal on scroll ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
