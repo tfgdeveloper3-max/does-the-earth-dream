@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube, FaGlobe, FaHeart } from 'react-icons/fa'
 import { FiArrowUp } from 'react-icons/fi'
 
@@ -12,38 +12,45 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="relative z-10"
-      style={{ borderTop: '1px solid rgba(107,93,211,0.2)' }}>
-
-      {/* Top glow line */}
+    <footer className="relative z-10" style={{ borderTop: '1px solid rgba(107,93,211,0.2)' }}>
       <div className="absolute top-0 left-0 right-0 h-px"
         style={{ background: 'linear-gradient(90deg, transparent, var(--dream-violet), transparent)' }} />
+      <div className="absolute top-0 left-0 right-0 h-16"
+        style={{ background: 'linear-gradient(180deg, rgba(107,93,211,0.06), transparent)' }} />
 
       <div className="max-w-7xl mx-auto px-6 py-14">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
 
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <FaGlobe className="text-2xl text-dream-lavender"
-                style={{ filter: 'drop-shadow(0 0 8px rgba(155,143,232,0.7))' }} />
+            <div className="flex items-center gap-3 mb-4">
+              <div className="relative">
+                <FaGlobe className="text-2xl text-dream-lavender"
+                  style={{ filter: 'drop-shadow(0 0 10px rgba(155,143,232,0.8))' }} />
+                <div className="absolute inset-0 rounded-full animate-ping opacity-15"
+                  style={{ background: 'var(--dream-violet)', animationDuration: '4s' }} />
+              </div>
               <div>
                 <span className="font-display text-xl font-bold text-dream-star block leading-tight">Does the Earth</span>
-                <span className="font-accent text-dream-lavender text-lg">Dream?</span>
+                <span className="font-accent text-dream-lavender text-lg"
+                  style={{ filter: 'drop-shadow(0 0 5px rgba(155,143,232,0.4))' }}>Dream?</span>
               </div>
             </div>
-            <p className="font-body text-sm leading-relaxed mb-5" style={{ color: 'rgba(232,228,255,0.55)' }}>
+            <p className="font-body text-sm leading-relaxed mb-6" style={{ color: 'rgba(232,228,255,0.52)' }}>
               A whimsical children's picture book inviting young readers to discover our
               planet's dreaming soul — one rhyme at a time.
             </p>
-            {/* Back to top */}
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-              className="flex items-center gap-2 text-sm font-body font-semibold text-dream-lavender hover:text-dream-white transition-colors group"
+              className="flex items-center gap-2 text-sm font-body font-semibold text-dream-lavender hover:text-dream-white transition-all duration-300 group"
             >
-              <span className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 group-hover:shadow-dream"
-                style={{ background: 'rgba(107,93,211,0.2)', border: '1px solid rgba(155,143,232,0.25)' }}>
-                <FiArrowUp className="text-dream-lavender group-hover:text-white transition-colors" />
+              <span className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 group-hover:shadow-dream"
+                style={{
+                  background: 'rgba(107,93,211,0.2)',
+                  border: '1px solid rgba(155,143,232,0.25)',
+                  boxShadow: '0 0 15px rgba(107,93,211,0.15)',
+                }}>
+                <FiArrowUp className="text-dream-lavender transition-transform duration-300 group-hover:-translate-y-0.5" />
               </span>
               Back to Top
             </button>
@@ -56,9 +63,10 @@ export default function Footer() {
               {quickLinks.map(href => (
                 <li key={href}>
                   <a href={href}
-                    className="font-body text-sm capitalize transition-all duration-200 hover:text-dream-white hover:translate-x-1 inline-flex items-center gap-2"
-                    style={{ color: 'rgba(155,143,232,0.7)' }}>
-                    <span className="w-1.5 h-1.5 rounded-full bg-dream-violet opacity-60" />
+                    className="font-body text-sm capitalize inline-flex items-center gap-2 transition-all duration-250 hover:text-dream-white hover:translate-x-2"
+                    style={{ color: 'rgba(155,143,232,0.65)' }}>
+                    <span className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                      style={{ background: 'var(--dream-violet)', boxShadow: '0 0 5px rgba(107,93,211,0.6)' }} />
                     {href.replace('#', '').replace('-', ' ')}
                   </a>
                 </li>
@@ -72,20 +80,16 @@ export default function Footer() {
             <div className="flex flex-col gap-4">
               {socials.map(({ icon: Icon, label, handle, color }) => (
                 <div key={label}
-                  className="flex items-center gap-3 group cursor-pointer transition-all duration-200 hover:translate-x-1">
-                  <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300"
-                    style={{
-                      background: `${color}18`,
-                      border: `1px solid ${color}30`,
-                      boxShadow: `0 0 0 ${color}00`,
-                    }}
-                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.boxShadow = `0 0 15px ${color}50`}
-                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.boxShadow = `0 0 0 ${color}00`}
+                  className="flex items-center gap-3 group cursor-pointer transition-all duration-250 hover:translate-x-2">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300"
+                    style={{ background: `${color}18`, border: `1px solid ${color}28` }}
+                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.boxShadow = `0 0 20px ${color}55`}
+                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.boxShadow = 'none'}
                   >
-                    <Icon className="text-sm" style={{ color, filter: `drop-shadow(0 0 4px ${color}80)` }} />
+                    <Icon className="text-sm" style={{ color, filter: `drop-shadow(0 0 5px ${color}80)` }} />
                   </div>
                   <div>
-                    <div className="font-body text-xs" style={{ color: 'rgba(155,143,232,0.5)' }}>{label}</div>
+                    <div className="font-body text-xs" style={{ color: 'rgba(155,143,232,0.48)' }}>{label}</div>
                     <div className="font-body text-sm text-dream-star group-hover:text-dream-lavender transition-colors">{handle}</div>
                   </div>
                 </div>
@@ -97,11 +101,13 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3"
           style={{ borderTop: '1px solid rgba(107,93,211,0.12)' }}>
-          <p className="font-body text-xs" style={{ color: 'rgba(155,143,232,0.45)' }}>
+          <p className="font-body text-xs" style={{ color: 'rgba(155,143,232,0.42)' }}>
             © {new Date().getFullYear()} Does the Earth Dream? — All Rights Reserved
           </p>
-          <p className="flex items-center gap-1.5 font-body text-xs" style={{ color: 'rgba(155,143,232,0.4)' }}>
-            Made By Ubaidullah <FaHeart className="text-dream-pink text-xs" style={{ filter: 'drop-shadow(0 0 4px rgba(192,132,176,0.7))' }} />
+          <p className="flex items-center gap-1.5 font-body text-xs" style={{ color: 'rgba(155,143,232,0.38)' }}>
+            Made By Ubaidullah
+            <FaHeart className="text-dream-pink animate-pulse"
+              style={{ filter: 'drop-shadow(0 0 5px rgba(192,132,176,0.8))', animationDuration: '1.5s' }} />
           </p>
         </div>
       </div>
